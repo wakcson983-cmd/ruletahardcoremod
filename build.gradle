@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '[6.0.24,6.2)', changing: true
+    }
+}
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'java'
+
+version = project.mod_version
+group = 'com.ruletahardcore'
+base { archivesName = 'ruletahardcore' }
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: project.minecraft_version
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.console.level', 'debug'
+            mods { ruletahardcore { source sourceSets.main } }
+        }
+    }
+}
+
+repositories { }
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+}
+
+tasks.named('jar', Jar).configure {
+    finalizedBy 'reobfJar'
+    manifest.attributes([
+        'Specification-Title': 'ruletahardcore',
+        'Implementation-Version': project.mod_version
+    ])
+}
+
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }

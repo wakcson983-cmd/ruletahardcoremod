@@ -1,0 +1,23 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+modId="ruletahardcore"
+version="1.0.0"
+displayName="Ruleta Hardcore"
+description='''Ruleta de 8 colores: un admin elige color, titulo y texto; sale en el chat de todos con animacion glitch.'''
+
+[[dependencies.ruletahardcore]]
+modId="forge"
+mandatory=true
+versionRange="[47,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.ruletahardcore]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.21)"
+ordering="NONE"
+side="BOTH"
